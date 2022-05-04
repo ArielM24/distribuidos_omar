@@ -1,3 +1,5 @@
+import 'package:distribuidos/domain/controllers/pages/create_page_controller.dart';
+import 'package:distribuidos/gui/pages/create/widgets/body/create_page_body.dart';
 import 'package:flutter/material.dart';
 
 class CreatePage extends StatelessWidget {
@@ -5,6 +7,8 @@ class CreatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CreatePageController controller =
+        CreatePageController(formKey: GlobalKey<FormState>());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -12,9 +16,14 @@ class CreatePage extends StatelessWidget {
         backgroundColor: Colors.blue[900],
         title: const Text("Crear producto"),
       ),
-      body: const Center(
-        child: Text("Crear"),
-      ),
+      body: CreatePageBody(controller: controller),
+      floatingActionButton: Visibility(
+          child: FloatingActionButton(
+        tooltip: "Capturar",
+        backgroundColor: Colors.blue[900],
+        onPressed: () => controller.createProduct(context),
+        child: const Icon(Icons.check),
+      )),
     );
   }
 }
