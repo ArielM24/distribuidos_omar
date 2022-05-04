@@ -7,8 +7,12 @@ class CreatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CreatePageController controller =
-        CreatePageController(formKey: GlobalKey<FormState>());
+    CreatePageController controller = CreatePageController(
+        formKey: GlobalKey<FormState>(),
+        descriptionController: TextEditingController(),
+        nameController: TextEditingController(),
+        priceController: TextEditingController(),
+        quantityController: TextEditingController());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -17,13 +21,12 @@ class CreatePage extends StatelessWidget {
         title: const Text("Crear producto"),
       ),
       body: CreatePageBody(controller: controller),
-      floatingActionButton: Visibility(
-          child: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         tooltip: "Capturar",
         backgroundColor: Colors.blue[900],
         onPressed: () => controller.createProduct(context),
         child: const Icon(Icons.check),
-      )),
+      ),
     );
   }
 }

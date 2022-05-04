@@ -15,6 +15,7 @@ class CreateImageField extends StatefulWidget {
 
 class _CreateImageFieldState extends State<CreateImageField> {
   String? image;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,6 +54,7 @@ class _CreateImageFieldState extends State<CreateImageField> {
                   child: const Center(child: Text("Imagen")),
                 ),
         ),
+        const SizedBox(height: 10),
       ],
     );
   }

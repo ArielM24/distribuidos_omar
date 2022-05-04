@@ -13,7 +13,7 @@ class CreatePageBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CreateBodyForm(formKey: controller.formKey),
+          CreateBodyForm(controller: controller),
           CreateImageField(controller: controller),
         ],
       ),
