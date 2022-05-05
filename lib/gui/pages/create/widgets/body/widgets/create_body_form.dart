@@ -26,8 +26,8 @@ class CreateBodyForm extends StatelessWidget {
           ),
           TitledInput(
             title: "Cantidad:",
-            controller: controller.quantityController,
-            validator: quantityValidator,
+            controller: controller.stockController,
+            validator: stockValidator,
           ),
           TitledInput(
             title: "Descripción:",

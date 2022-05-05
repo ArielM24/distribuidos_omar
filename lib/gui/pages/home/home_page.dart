@@ -1,5 +1,6 @@
 import 'package:distribuidos/gui/pages/create/create_page.dart';
 import 'package:distribuidos/gui/pages/home/widgets/home_button.dart';
+import 'package:distribuidos/gui/pages/purchase/purchase_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,9 +18,14 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           HomeButton(
-            text: "Crear producto",
+            text: "Capturar producto",
             onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const CreatePage())),
+          ),
+          HomeButton(
+            text: "Comprar producto",
+            onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const PurchasePage())),
           ),
           HomeButton(
             text: "Ver productos",
@@ -29,14 +35,6 @@ class HomePage extends StatelessWidget {
             text: "Editar productos",
             onPressed: () => debugPrint("editar"),
           ),
-
-          // TextButton(
-          //     onPressed: () {},
-          //     child: const Text("1"),
-          //     style: TextButton.styleFrom(primary: Colors.green)),
-          // IconButton(
-          //     onPressed: () {},
-          //     icon: const Icon(Icons.delete, color: Colors.blue)),
         ],
       ),
     );

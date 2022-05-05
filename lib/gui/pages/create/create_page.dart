@@ -12,13 +12,13 @@ class CreatePage extends StatelessWidget {
         descriptionController: TextEditingController(),
         nameController: TextEditingController(),
         priceController: TextEditingController(),
-        quantityController: TextEditingController());
+        stockController: TextEditingController());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         leading: const BackButton(),
         backgroundColor: Colors.blue[900],
-        title: const Text("Crear producto"),
+        title: const Text("Capturar producto"),
       ),
       body: CreatePageBody(controller: controller),
       floatingActionButton: FloatingActionButton(

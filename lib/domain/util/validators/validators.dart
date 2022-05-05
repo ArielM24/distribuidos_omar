@@ -8,7 +8,7 @@ String? nameValidator(String? name) {
   return null;
 }
 
-String? quantityValidator(String? quantity) {
+String? stockValidator(String? quantity) {
   if ((quantity ?? "").isEmpty) {
     return "Ingrese una cantidad";
   }
