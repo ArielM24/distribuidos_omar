@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:distribuidos/domain/controllers/pages/search_page_controller.dart';
 import 'package:distribuidos/domain/models/product.dart';
+import 'package:distribuidos/domain/services/api_service.dart';
+import 'package:distribuidos/gui/util/messages.dart';
 import 'package:flutter/material.dart';
 
 class CreatePageController {
@@ -32,7 +33,7 @@ class CreatePageController {
 
   _crear(BuildContext context) async {
     debugPrint("crear: ${nameController.text}");
-    Uint8List? imageBytes = await File(image!).readAsBytes();
+    Uint8List imageBytes = await File(image!).readAsBytes();
     Product p = Product(
         name: nameController.text,
         description: descriptionController.text,
@@ -40,42 +41,12 @@ class CreatePageController {
         price: double.parse(priceController.text),
         image: imageBytes);
     debugPrint("product $p");
-    SearchPageController().products.add(p);
-    showSuccessDialog(context);
-  }
-
-  showSuccessDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text("Producto creado"),
-            content: const Text("Producto registrado correctamente"),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text("Ok"))
-            ],
-          );
-        });
-  }
-
-  showImageError(BuildContext context) {
-    ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
-      elevation: 1,
-      backgroundColor: Colors.blue[700],
-      actions: [
-        TextButton(
-            child: const Text("Ok", style: TextStyle(color: Colors.white)),
-            onPressed: () =>
-                ScaffoldMessenger.of(context).hideCurrentMaterialBanner())
-      ],
-      content: const Text("Debe seleccionar una imagen",
-          style: TextStyle(color: Colors.white)),
-    ));
-    Future.delayed(const Duration(seconds: 3))
-        .then((_) => ScaffoldMessenger.of(context).hideCurrentMaterialBanner());
+    //SearchPageController().products.add(p);
+    bool success = await ApiService.captureProduct(p);
+    if (success) {
+      showSuccessDialog(context);
+    } else {
+      showError(context);
+    }
   }
 }

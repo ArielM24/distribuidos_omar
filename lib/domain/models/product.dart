@@ -23,7 +23,7 @@ class Product {
     };
   }
 
-  Product fromMap(Map<String, dynamic> map) {
+  static Product fromMap(Map<String, dynamic> map) {
     return Product(
         name: map["name"] ?? "",
         description: map["description"] ?? "",

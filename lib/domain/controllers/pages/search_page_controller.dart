@@ -1,4 +1,5 @@
 import 'package:distribuidos/domain/models/product.dart';
+import 'package:distribuidos/domain/services/api_service.dart';
 import 'package:flutter/foundation.dart';
 
 class SearchPageController with ChangeNotifier {
@@ -15,7 +16,10 @@ class SearchPageController with ChangeNotifier {
     debugPrint("searching $keyWord");
     isLoading = true;
     notifyListeners();
-    await Future.delayed(const Duration(seconds: 3));
+    List<Product>? res = await ApiService.searchProduct(keyWord);
+    if (res != null) {
+      products = res;
+    }
     isLoading = false;
     notifyListeners();
   }
